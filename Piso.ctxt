@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=m
+comment0.target=Piso(Mosaico)
+comment1.params=n\ m
+comment1.target=void\ setDimensiones(int,\ int)
+comment2.params=
+comment2.target=void\ crearPiso()
+comment3.params=
+comment3.target=void\ generarPiso()
+comment4.params=
+comment4.target=void\ imprimir()
+comment5.params=emma
+comment5.target=void\ main(java.lang.String[])
+numComments=6
