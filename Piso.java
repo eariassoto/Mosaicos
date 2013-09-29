@@ -5,9 +5,10 @@
  * @author Emmanuel Arias
  * @version 0.1
  */
+import java.awt.Color;
 public class Piso{
     private Mosaico mosaico;
-    private String[][] piso;
+    private int[][] piso;
     private int n, m;
     public Piso(Mosaico m){
         this.mosaico = m;
@@ -20,18 +21,31 @@ public class Piso{
         this.m = m;
     }
 
-    public void crearPiso(){
-        piso = new String[n][m];
+    public int getN(){
+        return n;
+    }
+
+    public int getM(){
+        return m;
     }
 
     public void generarPiso(){
-        String[][] patron = mosaico.getPatron();
+        piso = new int[n][m];
+        int[][] patron = mosaico.getPatron();
         int ladoMos = mosaico.getLado();
         for(int i = 0; i < piso.length; i++){
             for(int j = 0; j < piso[0].length; j++){
                 piso[i][j] = patron[i % ladoMos][j % ladoMos];
             }
         }
+    }
+
+    public int[][] getPiso(){
+        return piso;
+    }
+
+    public Color getColor(int c){
+        return mosaico.getColor(c);
     }
 
     public void imprimir(){
@@ -41,17 +55,5 @@ public class Piso{
             }
             System.out.print("\n");
         }
-    }
-
-    public static void main(String emma[]){
-        Mosaico m = new Mosaico();
-        m.setLado(4);
-        m.crearMosaico();
-        m.setPatron(2);
-        Piso p = new Piso(m);
-        p.setDimensiones(20,10);
-        p.crearPiso();
-        p.generarPiso();
-        p.imprimir();
     }
 }

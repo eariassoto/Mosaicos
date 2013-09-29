@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=txtE\ btnAyuda\ txtA\ mosaico\ piso
+comment0.target=Interfaz(javax.swing.JTextField,\ javax.swing.JButton[],\ javax.swing.JTextArea,\ Mosaico,\ Piso)
+comment1.params=
+comment1.target=void\ mostrarPiso()
+comment1.text=\r\n\ Hacer\ mas\ lindo,\ una\ vez\ que\ todo\ funcione.\ (\:\r\n
+numComments=2

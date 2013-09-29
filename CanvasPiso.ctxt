@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=piso\ largo\ ancho
+comment0.target=CanvasPiso(Piso,\ int,\ int)
+comment1.params=
+comment1.target=void\ medidas()
+comment2.params=
+comment2.target=javax.swing.JLabel\ getView()
+numComments=3

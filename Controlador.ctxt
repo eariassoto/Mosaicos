@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Controlador()
+comment1.params=
+comment1.target=void\ setDefaults()
+comment2.params=
+comment2.target=java.lang.String\ generarEstado()
+comment3.params=
+comment3.target=void\ setEstado()
+comment4.params=emma
+comment4.target=void\ main(java.lang.String[])
+numComments=5
