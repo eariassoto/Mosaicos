@@ -7,6 +7,7 @@
  */
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
@@ -19,28 +20,30 @@ public class Interfaz{
     private VentanaPrincipal ventanaPrincipal;
     private CanvasPiso canvasPiso;
 
-    public Interfaz(JTextField txtE, JTextArea txtA, JTextArea txtC, Mosaico mosaico, Piso piso){
+    public Interfaz(JTextField txtE, JTextArea txtA, JTextArea txtC, JLabel lblMsj, Mosaico mosaico, Piso piso){
         Dimension tamanoPantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        largo = (int)tamanoPantalla.getWidth();
-        ancho = (int)tamanoPantalla.getHeight();
+        largo = (int)tamanoPantalla.getWidth()-250;
+        ancho = (int)tamanoPantalla.getHeight()-150;
 
-        ventanaPrincipal = new VentanaPrincipal(txtE, txtA, txtC, mosaico);
+        ventanaPrincipal = new VentanaPrincipal(txtE, txtA, txtC, lblMsj, mosaico);
         this.piso = piso;
     }
 
     public void mostrarPiso(){
-        CanvasPiso canvasPiso = new CanvasPiso(piso, 800, 600);
-        JFrame frame = new JFrame();
-        int vertexes = 0;
-        // Change this next part later to be dynamic.
-        vertexes = 10;
-        int canvasSize = vertexes * vertexes;
-        frame.setSize(canvasSize, canvasSize);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setContentPane(canvasPiso.getView());
+        CanvasPiso canvasPiso = new CanvasPiso(piso, largo, ancho);
+        JFrame frame = new JFrame("Piso Generado");
+        frame.setSize(canvasPiso.getLargo(), canvasPiso.getAncho());
+        frame.setResizable(false);
+        frame.getContentPane().add(canvasPiso.getView());
         frame.pack();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
+    }
+
+    public BufferedImage getSuperficie(){
+        CanvasPiso canvas = new CanvasPiso(piso, largo, ancho);
+        return canvas.getSuperficie();
     }
 
     public void cargarVentana(){

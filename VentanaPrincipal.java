@@ -11,7 +11,7 @@ public class VentanaPrincipal extends JFrame {
 
     private JPanel contentPane;
     private JTextField txtEntrada;
-    private JLabel lblPreview;
+    private JLabel lblPreview, lblMsj;
     private JLabel[] lbl;
     private JTextArea txtEstado, txtComandos;
     private CanvasPreview canvasPreview;
@@ -20,16 +20,17 @@ public class VentanaPrincipal extends JFrame {
     /**
      * Create the frame.
      */
-    public VentanaPrincipal(JTextField txtE, JTextArea txtA, JTextArea txtC, Mosaico mosaico){
+    public VentanaPrincipal(JTextField txtE, JTextArea txtA, JTextArea txtC, JLabel lblMsj, Mosaico mosaico){
         super("Mosaicos");
         this.txtEntrada = txtE;
         this.txtComandos = txtC;
         this.txtEstado = txtA;
+        this.lblMsj = lblMsj;
         this.mosaico = mosaico;
         this.lbl = new JLabel[4];
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBounds(100, 100, 500, 285);
+        this.setSize(500, 350);
         crearVentana();
     }
 
@@ -40,7 +41,7 @@ public class VentanaPrincipal extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        txtEntrada.setBounds(235, 130, 221, 20);
+        txtEntrada.setBounds(235, 140, 221, 20);
         contentPane.add(txtEntrada);
         txtEntrada.setColumns(10);
 
@@ -57,15 +58,18 @@ public class VentanaPrincipal extends JFrame {
         contentPane.add(lbl[1]);
 
         lbl[2] = new JLabel("Terminal:");
-        lbl[2].setBounds(235, 110, 100, 14);
+        lbl[2].setBounds(235, 120, 100, 14);
         contentPane.add(lbl[2]);
 
+        lblMsj.setBounds(235, 165, 221, 14);
+        contentPane.add(lblMsj);
+        
         lbl[3] = new JLabel("Comandos:");
-        lbl[3].setBounds(235, 155, 100, 14);
+        lbl[3].setBounds(235, 200, 100, 14);
         contentPane.add(lbl[3]);
  
         txtComandos.setEditable(false);
-        txtComandos.setBounds(235, 175, 250, 80);
+        txtComandos.setBounds(235, 215, 250, 100);
         contentPane.add(txtComandos);
 
         canvasPreview = new CanvasPreview(mosaico, 160);
