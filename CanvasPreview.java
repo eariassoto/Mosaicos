@@ -17,7 +17,7 @@ public class CanvasPreview{
     private JLabel view;
     private BufferedImage superficie;
     private Mosaico mosaico;
-
+    private Graphics g;
     public CanvasPreview(Mosaico mosaico, int tamano){
         this.mosaico = mosaico;
         m = mosaico.getPatron();
@@ -27,11 +27,11 @@ public class CanvasPreview{
         superficie = new BufferedImage(tamano, tamano, BufferedImage.TYPE_INT_RGB);
         view = new JLabel(new ImageIcon(superficie));
 
-        Graphics g = superficie.getGraphics();
-        pintar(g);
+        g = superficie.getGraphics();
+        pintar();
     }
 
-    private void pintar(Graphics g){
+    public void pintar(){
         g.setColor(Color.WHITE);
         g.fillRect(0,0,tamano,tamano);
 
@@ -51,6 +51,7 @@ public class CanvasPreview{
             coordY += lado;
         }
         g.dispose();
+        view = new JLabel(new ImageIcon(superficie));
     }
 
     public JLabel getView(){

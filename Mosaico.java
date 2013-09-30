@@ -124,10 +124,27 @@ public class Mosaico{
         }
     }
 
+    public int getNumPatron(){
+        return patron;
+    }
+
+    public String getNomPatron(){
+        switch(patron){
+            case 1:
+            return "Diagonal";
+            case 2:
+            return "Cuadros";
+            case 3:
+            return "Cuadricula";
+            case 4:
+            return "Cruz";
+        }
+        return "";
+    } 
+
     public void setLado(int l){
         this.lado = l;
         mosaico = new int[lado][lado];
-        setPatron(patron);
     }
 
     public int getLado(){
@@ -171,10 +188,7 @@ public class Mosaico{
         return temp;
     }
     /* Fin de magia matricial. */
-
-    /**
-     * Codigo algo cerdo, tratar de hacer mas bonito
-     */
+    
     public void girarMosaico(int o){
         switch(o){
             case 0:

@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.params=mosaico\ tamano
 comment0.target=CanvasPreview(Mosaico,\ int)
-comment1.params=g
-comment1.target=void\ pintar(java.awt.Graphics)
+comment1.params=
+comment1.target=void\ pintar()
 comment2.params=
 comment2.target=javax.swing.JLabel\ getView()
 numComments=3

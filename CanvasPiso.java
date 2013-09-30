@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 public class CanvasPiso{
-    private int largo, ancho, lado;
+    private int largo, ancho, lado, tamano;
     private int[][] p;
     private JLabel view;
     private BufferedImage superficie;
@@ -17,12 +17,13 @@ public class CanvasPiso{
         this.largo = largo;
         this.ancho = ancho;
         medidas();
-        superficie = new BufferedImage(largo, ancho, BufferedImage.TYPE_INT_RGB);
+        System.out.println(tamano+".."+tamano);
+        superficie = new BufferedImage(tamano, tamano, BufferedImage.TYPE_INT_RGB);
         view = new JLabel(new ImageIcon(superficie));
 
         Graphics g = superficie.getGraphics();
         g.setColor(piso.getColor(1));
-        g.fillRect(0,0,largo,ancho);
+        g.fillRect(0,0,tamano,tamano);
 
         int coordX = 0, coordY = 0;
         for(int i = 0; i < p.length; i++){
@@ -43,12 +44,13 @@ public class CanvasPiso{
     }
 
     public void medidas(){
+        System.out.println(p.length+"&&"+p[0].length);
         if(ancho / p.length < largo / p[0].length){
             lado = (int)(ancho / p.length);
-            largo = ancho;
+            tamano = p.length * lado;
         }else{
             lado = (int)(largo / p[0].length);
-            ancho = largo;
+            tamano = p.length * lado;
         }
     }
 
