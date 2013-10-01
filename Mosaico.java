@@ -11,17 +11,27 @@ public class Mosaico{
     private int[][] mosaico;
     private int lado, patron;
     private Color color1, color2;
+    private Color[] color = new Color[]{Color.WHITE, Color.BLACK, Color.CYAN, Color.BLUE, Color.RED, Color.ORANGE, Color.PINK, Color.GRAY, Color.MAGENTA};
+    private String[] nombreColor = new String[]{"blanco", "negro", "celeste", "azul", "rojo", "naranja", "rosado", "gris", "magenta"};
+
     public Mosaico(){
         lado = 0;
         patron = 0;
         mosaico = new int[lado][lado];
     }
 
+    public Mosaico(int l, int p, int c1, int c2){
+        setLado(l);
+        setPatron(p);
+        setColor(1, c1);
+        setColor(2, c2);
+    }
+
     public void setColor(int c, int o){
         if(c == 1){
-            color1 = elegirColor(o);
+            color1 = color[o-1];
         }else{
-            color2 = elegirColor(o);
+            color2 = color[o-1];
         }
     }
 
@@ -34,51 +44,22 @@ public class Mosaico{
     }
 
     public String getNombreColor(int c){
-        if(c == 1){
-            return nombreColor(color1);
-        }else{
-            return nombreColor(color2);
-        }
-    }
-
-    private Color elegirColor(int o){
-        switch(o){
-            case 1:
-            return Color.WHITE;
-            case 2:
-            return Color.BLACK;
-            case 3:
-            return Color.BLUE;
-            case 4:
-            return Color.RED;
-            case 5:
-            return 	Color.ORANGE;
-        }
-        return Color.WHITE;
-    }
-
-    private String nombreColor(Color c){
-        if(c == Color.WHITE){
-            return "blanco";
-        }else{
-            if(c == Color.BLACK){
-                return "negro";
-            }else{
-                if(c == Color.BLUE){
-                    return "azul";
-                }else{
-                    if(c == Color.RED){
-                        return "rojo";
-                    }else{
-                        if(c == Color.ORANGE){
-                            return "naranja";
-                        }else{
-                            return "";
-                        }
-                    }
-                }
+        Color col = (c == 1)?color1:color2;
+        String s = "";
+        for(int i = 0; i < color.length; i++){
+            if(col == color[i]){
+                s = nombreColor[i];
             }
         }
+        return s;
+    }
+
+    public String getNombre(int c){
+        return nombreColor[c];
+    }
+
+    public int getCantidadColores(){
+        return color.length;
     }
 
     public void setPatron(int o){
@@ -187,8 +168,9 @@ public class Mosaico{
         }
         return temp;
     }
+
     /* Fin de magia matricial. */
-    
+
     public void girarMosaico(int o){
         switch(o){
             case 0:
@@ -212,14 +194,5 @@ public class Mosaico{
             mosaico = revertirFilasMatriz(mosaico);
             break;
         }//para 90 derecha 
-    }
-
-    public void imprimir(){
-        for(int i = 0; i < mosaico.length; i++){
-            for(int j = 0; j < mosaico.length; j++){
-                System.out.print(mosaico[i][j]);
-            }
-            System.out.print("\n");
-        }
     }
 }

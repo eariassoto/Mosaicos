@@ -20,12 +20,12 @@ public class Interfaz{
     private VentanaPrincipal ventanaPrincipal;
     private CanvasPiso canvasPiso;
 
-    public Interfaz(JTextField txtE, JTextArea txtA, JTextArea txtC, JLabel lblMsj, Mosaico mosaico, Piso piso){
+    public Interfaz(JTextField txtE, JTextArea txtA, JTextArea txtC, JTextArea txtCol, JLabel lblMsj, Mosaico mosaico, Piso piso){
         Dimension tamanoPantalla = Toolkit.getDefaultToolkit().getScreenSize();
         largo = (int)tamanoPantalla.getWidth()-250;
         ancho = (int)tamanoPantalla.getHeight()-150;
 
-        ventanaPrincipal = new VentanaPrincipal(txtE, txtA, txtC, lblMsj, mosaico);
+        ventanaPrincipal = new VentanaPrincipal(txtE, txtA, txtC, txtCol, lblMsj, mosaico);
         this.piso = piso;
     }
 

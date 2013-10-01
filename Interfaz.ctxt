@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=txtE\ txtA\ txtC\ lblMsj\ mosaico\ piso
-comment0.target=Interfaz(javax.swing.JTextField,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JLabel,\ Mosaico,\ Piso)
+comment0.params=txtE\ txtA\ txtC\ txtCol\ lblMsj\ mosaico\ piso
+comment0.target=Interfaz(javax.swing.JTextField,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JLabel,\ Mosaico,\ Piso)
 comment1.params=
 comment1.target=void\ mostrarPiso()
 comment2.params=

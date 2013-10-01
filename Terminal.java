@@ -1,16 +1,12 @@
-
 /**
  * Write a description of class Comando here.
  * 
  * @author Emmanuel Arias Soto 
  * @version 0.1
  */
-/**
- * Poner aqui mae listas con los comandos para que 
- * Interprete los recupere.
- */
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+
 public class Terminal{
 
     private Escribir escribir;
@@ -33,7 +29,7 @@ public class Terminal{
             "rot[ ]{1}[-]{1}90",
             "rot[ ]{1}[+]{1}180",
             "rot[ ]{1}[-]{1}180",
-            "col[ ]{1}[1-2]{1}[ ]{1}[1-5]{1}",
+            "col[ ]{1}[1-2]{1}[ ]{1}[1-"+mosaico.getCantidadColores()+"]{1}",
             "pis[ ]{1}[1-9]{1}[0-9]{0,2}[ ]{1}[1-9]{1}[0-9]{0,2}",
             "gen",
             "exp"};
@@ -45,7 +41,7 @@ public class Terminal{
     private void setComandos(){
         listaComandos = "mos p l --> mosaico patron[1-4], lado[1-99]" +
         "\nrot a --> rotar angulo[+90,-90,+180,-180]" +
-        "\ncol # c --> establecer color #[1,2] color[1-5]"+
+        "\ncol # c --> establecer color #[1,2] color[1-"+mosaico.getCantidadColores()+"]"+
         "\npis n m --> piso n[1-499] x m[1-499]"+
         "\ngen --> generar piso"+
         "\nexp --> exportar imagen como png";

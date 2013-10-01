@@ -21,7 +21,7 @@ public class Controlador{
     private Escribir escribir;
 
     private JTextField txtEntrada;
-    private JTextArea txtEstado, txtComandos;
+    private JTextArea txtEstado, txtComandos, txtColores;
     private JLabel lblMsj;
 
     public Controlador(){
@@ -33,9 +33,10 @@ public class Controlador{
         txtEntrada = new JTextField();
         txtEstado = new JTextArea();
         txtComandos = new JTextArea();
+        txtColores = new JTextArea();
         lblMsj = new JLabel();
 
-        interfaz = new Interfaz(txtEntrada, txtEstado, txtComandos, lblMsj, mosaico, piso);
+        interfaz = new Interfaz(txtEntrada, txtEstado, txtComandos, txtColores, lblMsj, mosaico, piso);
         terminal = new Terminal(mosaico, piso, interfaz, escribir);
         setTextos("Ingresa un comando en la terminal.");
 
@@ -43,11 +44,11 @@ public class Controlador{
     }
 
     private void setDefaults(){
-        mosaico.setLado(5);
-        mosaico.setColor(1,1);
-        mosaico.setColor(2,3);
-        mosaico.setPatron(4);
-        piso.setDimensiones(100,100);
+        mosaico.setLado(4);
+        mosaico.setColor(1,3);
+        mosaico.setColor(2,4);
+        mosaico.setPatron(1);
+        piso.setDimensiones(24,32);
         piso.generarPiso();
     }
 
@@ -71,9 +72,22 @@ public class Controlador{
         return estado;
     }
 
+    private String generarListaColores(){
+        String l = "";
+        int cantCol = mosaico.getCantidadColores();
+        int n = 1;
+        while(n <= cantCol){
+            l += String.valueOf(n)+". "+mosaico.getNombre(n-1);
+            l+= (n % 3 == 0)?"\n":"  ";
+            n++;
+        }
+        return l;
+    }
+
     private void setTextos(String s){
         txtEstado.setText(generarEstado());
         txtComandos.setText(terminal.getListaComandos());
+        txtColores.setText(generarListaColores());
         lblMsj.setText(s);
     }
 

@@ -23,7 +23,6 @@ public class CanvasPreview{
         m = mosaico.getPatron();
         this.tamano = tamano;
         lado = (int)tamano / m.length;
-
         superficie = new BufferedImage(tamano, tamano, BufferedImage.TYPE_INT_RGB);
         view = new JLabel(new ImageIcon(superficie));
 

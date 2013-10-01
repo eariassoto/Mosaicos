@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=txtE\ txtA\ txtC\ lblMsj\ mosaico
-comment0.target=VentanaPrincipal(javax.swing.JTextField,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JLabel,\ Mosaico)
+comment0.params=txtE\ txtA\ txtC\ txtCol\ lblMsj\ mosaico
+comment0.target=VentanaPrincipal(javax.swing.JTextField,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JLabel,\ Mosaico)
 comment0.text=\r\n\ Create\ the\ frame.\r\n
 comment1.params=
 comment1.target=void\ crearVentana()
