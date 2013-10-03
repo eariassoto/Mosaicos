@@ -1,26 +1,53 @@
-/**
- * Write a description of class Comando here.
+/*
+ * La clase Terminal procesa los comandos que recibe y ejecuta las ordenes
+ * establecidas.
  * 
- * @author Emmanuel Arias Soto 
+ * @author Emmanuel Arias Soto
  * @version 0.1
  */
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+
 public class Terminal{
 
-    private Escribir escribir;
+    /** El objeto almacenamiento. */
+    private Almacenamiento almacenamiento;
+    
+    /** El objeto mosaico. */
     private Mosaico mosaico;
+    
+    /** El objeto interfaz. */
     private Interfaz interfaz;
+    
+    /** El objeto piso. */
     private Piso piso;
+    
+    /** El objeto patron. */
     private Pattern patron;
+    
+    /** El objeto matcher. */
     private Matcher matcher;
+    
+    /** Vector con las expresiones regulares para validar comandos. */
     private String[] tipoComando;
+    
+    /** Hilera para informar de la lista de comandos. */
     private String listaComandos;
+    
+    /** Usados para enviar parametros al separar el comando. */
     private int p1, p2;
 
-    public Terminal(Mosaico mosaico, Piso piso, Interfaz interfaz, Escribir escribir){
-        this.escribir = escribir;
+    /**
+     * Instancia una nueva terminal.
+     *
+     * @param mosaico el objeto mosaico
+     * @param piso el objeto piso
+     * @param interfaz el objeto interfaz
+     * @param almacenamiento el objeto almacenamiento
+     */
+    public Terminal(Mosaico mosaico, Piso piso, Interfaz interfaz, Almacenamiento almacenamiento){
+        this.almacenamiento = almacenamiento;
         this.mosaico = mosaico;
         this.piso = piso;
         this.interfaz = interfaz;
@@ -38,6 +65,9 @@ public class Terminal{
         setComandos();
     }
 
+    /**
+     * Crea la lista con los comandos.
+     */
     private void setComandos(){
         listaComandos = "mos p l --> mosaico patron[1-4], lado[1-99]" +
         "\nrot a --> rotar angulo[+90,-90,+180,-180]" +
@@ -47,10 +77,21 @@ public class Terminal{
         "\nexp --> exportar imagen como png";
     }
 
+    /**
+     * Informa sobre los comandos existentes.
+     *
+     * @return hilera con la lista.
+     */
     public String getListaComandos(){
         return listaComandos;
     }
 
+    /**
+     * Procesa comandos.
+     *
+     * @param s comando recibido
+     * @return hilera con mensaje de resultado
+     */
     public String procesarComando(String s){
         for(int i = 0; i < tipoComando.length; i++){
             patron = Pattern.compile(tipoComando[i]);
@@ -65,6 +106,14 @@ public class Terminal{
         return "Comando no reconocido.";
     }
 
+    /**
+     * Ejecuta comandos.
+     *
+     * @param o opcion de comando
+     * @param p1 parametro 1
+     * @param p2 parametro 2 
+     * @return hilera con resultado
+     */
     private String ejecutarComando(int o, int p1, int p2){
         switch(o){
             case 0:
@@ -99,7 +148,7 @@ public class Terminal{
             return "Color #"+p1+" cambiado correctamente.";
             case 6:
             // cambiar dimensiones 
-            piso.setDimensiones(p1, p2);
+            piso.setTamano(p1, p2);
             piso.generarPiso();
             return "Piso generado.";
             case 7:
@@ -109,7 +158,7 @@ public class Terminal{
             case 8:
             //guardar
             piso.generarPiso();
-            return escribir.guardarImagen(interfaz.getSuperficie());
+            return almacenamiento.exportarImagen(interfaz.getSuperficie());
         }
         return "";
     }
