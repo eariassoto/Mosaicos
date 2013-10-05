@@ -1,7 +1,8 @@
 #BlueJ class context
-comment0.params=txtE\ txtA\ txtC\ txtCol\ lblMsj\ mosaico
+comment0.params=txtE\ txtA\ txtC\ txtCol\ lblMsj\ m
 comment0.target=VentanaPrincipal(javax.swing.JTextField,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JLabel,\ Mosaico)
-comment0.text=\r\n\ Create\ the\ frame.\r\n
+comment0.text=\r\n\ Crea\ una\ nueva\ ventana.\r\n\ \r\n\ @param\ txtE\r\n\ \ \ \ \ \ \ \ \ \ \ \ campo\ de\ texto\ para\ entrada\r\n\ @param\ txtA\r\n\ \ \ \ \ \ \ \ \ \ \ \ area\ de\ texto\r\n\ @param\ txtC\r\n\ \ \ \ \ \ \ \ \ \ \ \ area\ de\ texto\r\n\ @param\ txtCol\r\n\ \ \ \ \ \ \ \ \ \ \ \ area\ de\ texto\r\n\ @param\ lblMsj\r\n\ \ \ \ \ \ \ \ \ \ \ \ etiqueta\ para\ mensajes\r\n\ @param\ m\r\n\ \ \ \ \ \ \ \ \ \ \ \ objeto\ mosaico\r\n
 comment1.params=
 comment1.target=void\ crearVentana()
+comment1.text=\r\n\ Agrega\ componentes\ graficos\ a\ la\ ventana.\r\n
 numComments=2

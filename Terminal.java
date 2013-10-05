@@ -69,12 +69,12 @@ public class Terminal{
      * Crea la lista con los comandos.
      */
     private void setComandos(){
-        listaComandos = "mos p l --> mosaico patron[1-4], lado[1-99]" +
-        "\nrot a --> rotar angulo[+90,-90,+180,-180]" +
-        "\ncol # c --> establecer color #[1,2] color[1-"+mosaico.getCantidadColores()+"]"+
-        "\npis n m --> piso n[1-499] x m[1-499]"+
-        "\ngen --> generar piso"+
-        "\nexp --> exportar imagen como png";
+        listaComandos = "1. mos p t --> Crea un nuevo mosaico con el \npatron[1-4] y con un tamano[1-99]." +
+        "\n2. rot a --> Rota el mosaico en un \nangulo[+90,-90,+180,-180]." +
+        "\n3. col # c --> Establece el color #[1,2] con un \ncolor[1-"+mosaico.getCantidadColores()+"] de la lista de la izquierda."+
+        "\n4. pis n m --> Crea un piso n[1-499] x m[1-499]"+
+        "\n5. gen --> Mostrar el piso generado en una \nventana nueva."+
+        "\n6. exp --> Exporta el piso como una imagen PNG.";
     }
 
     /**
@@ -153,6 +153,7 @@ public class Terminal{
             return "Piso generado.";
             case 7:
             // generar piso
+            piso.generarPiso();
             interfaz.mostrarPiso();
             return "Piso generado correctamente.";
             case 8:

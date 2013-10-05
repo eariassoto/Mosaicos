@@ -1,10 +1,20 @@
 #BlueJ class context
-comment0.params=txtE\ txtA\ txtC\ txtCol\ lblMsj\ mosaico\ piso
-comment0.target=Interfaz(javax.swing.JTextField,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JTextArea,\ javax.swing.JLabel,\ Mosaico,\ Piso)
+comment0.params=ventanaPrincipal\ piso
+comment0.target=Interfaz(VentanaPrincipal,\ Piso)
+comment0.text=\r\n\ Instancia\ una\ nueva\ interfaz.\r\n\ \r\n\ @param\ ventanaPrincipal\r\n\ \ \ \ \ \ \ \ \ \ \ \ ventana\ Principal\r\n\ @param\ piso\r\n\ \ \ \ \ \ \ \ \ \ \ \ the\ piso\r\n
 comment1.params=
 comment1.target=void\ mostrarPiso()
+comment1.text=\r\n\ Crea\ un\ nuevo\ JFrame\ y\ un\ nuevo\ CanvasPiso\ que\ vuelve\ a\ dibujar\ el\r\n\ diseno.\r\n
 comment2.params=
 comment2.target=java.awt.image.BufferedImage\ getSuperficie()
+comment2.text=\r\n\ Devuelve\ el\ objeto\ BufferedImage\ para\ ser\ procesado\ y\ guardado\ como\ un\r\n\ archivo\ de\ imagen.\r\n\ \r\n\ @return\ superficie\ del\ piso\r\n
 comment3.params=
 comment3.target=void\ cargarVentana()
-numComments=4
+comment3.text=\r\n\ Refresca\ la\ ventana\ principal,\ debido\ a\ cambios\ en\ las\ hileras\ de\ texto.\r\n
+comment4.params=s\ t\ opciones\ tipo
+comment4.target=int\ dialogoOpcion(java.lang.String,\ java.lang.String,\ java.lang.Object[],\ int)
+comment4.text=\r\n\ Crea\ un\ dialogo\ con\ opciones.\r\n\ \r\n\ @param\ s\r\n\ \ \ \ \ \ \ \ \ \ \ \ hilera\ de\ mensaje\r\n\ @param\ t\r\n\ \ \ \ \ \ \ \ \ \ \ \ hilera\ con\ el\ titulo\r\n\ @param\ opciones\r\n\ \ \ \ \ \ \ \ \ \ \ \ opciones\ del\ dialog\r\n\ @param\ tipo\r\n\ \ \ \ \ \ \ \ \ \ \ \ tipo\ de\ dialogo\r\n\ @return\ resultado\ del\ dialogo\r\n
+comment5.params=s\ t\ tipo
+comment5.target=void\ dialogoMensaje(java.lang.String,\ java.lang.String,\ int)
+comment5.text=\r\n\ Crea\ un\ dialogo\ con\ un\ mensaje.\r\n\ \r\n\ @param\ s\r\n\ \ \ \ \ \ \ \ \ \ \ \ hilera\ mensaje\r\n\ @param\ t\r\n\ \ \ \ \ \ \ \ \ \ \ \ hilera\ titulo\r\n\ @param\ tipo\r\n\ \ \ \ \ \ \ \ \ \ \ \ tipo\ de\ mensaje\r\n
+numComments=6

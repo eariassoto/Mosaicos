@@ -17,14 +17,11 @@ public class Almacenamiento {
 	/** Ayuda al usuario a elegir una ruta para almacenar la imagen. */
 	private JFileChooser fc;
 
-	/** El objeto mosaico a serializar. */
-	private Mosaico mosaico;
-
 	/** El objeto piso a serializar. */
 	private Piso piso;
 
 	/** Las rutas de los archivos a serializar. */
-	private final String rutaMosaico = "archivo.ser", rutaPiso = "piso.ser";
+	private final String rutaSesion = "sesion.ser";
 
 	/**
 	 * Determina si hay una sesion guardada.
@@ -32,10 +29,8 @@ public class Almacenamiento {
 	 * @return true, si la hay
 	 */
 	public boolean haySesionGuardada() {
-		File archivoPiso = new File(rutaPiso);
-		File archivoMosaico = new File(rutaMosaico);
-		// evalua con un "and" para evitar errores.
-		return (archivoPiso.exists() && archivoMosaico.exists()) ? true : false;
+		File archivoSesion = new File(rutaSesion);
+		return(archivoSesion.exists()) ? true : false;
 	}
 
 	/**
@@ -66,45 +61,22 @@ public class Almacenamiento {
 	}
 
 	/**
-	 * Lee un archivo serializado y hace el cast a Mosaico, en caso algun error
-	 * devuelve objetos nuevos.
-	 * 
-	 * @return el objeto mosaico
-	 */
-	public Mosaico leerMosaico() {
-		try {
-			FileInputStream archivoEntrada = new FileInputStream(rutaMosaico);
-			ObjectInputStream entrada = new ObjectInputStream(archivoEntrada);
-			mosaico = (Mosaico) entrada.readObject();
-			entrada.close();
-			archivoEntrada.close();
-		} catch (IOException i) {
-			mosaico = new Mosaico();
-			return mosaico;
-		} catch (ClassNotFoundException c) {
-			mosaico = new Mosaico();
-			return mosaico;
-		}
-		return mosaico;
-	}
-
-	/**
 	 * Lee un archivo serializado y hace el cast a Piso, en caso algun error
 	 * devuelve objetos nuevos.
 	 * 
 	 * @return el objeto piso
 	 */
-	public Piso leerPiso() {
+	public Piso leerSesion() {
 		try {
-			FileInputStream archivoEntrada = new FileInputStream(rutaPiso);
+			FileInputStream archivoEntrada = new FileInputStream(rutaSesion);
 			ObjectInputStream entrada = new ObjectInputStream(archivoEntrada);
 			piso = (Piso) entrada.readObject();
 			entrada.close();
 			archivoEntrada.close();
 		} catch (IOException i) {
-			return new Piso(mosaico);
+			return null;
 		} catch (ClassNotFoundException c) {
-			return new Piso(mosaico);
+			return null;
 		}
 		return piso;
 	}
@@ -118,16 +90,10 @@ public class Almacenamiento {
 	 *            el objeto piso
 	 * @return true, si se logro
 	 */
-	public boolean guardar(Mosaico m, Piso p) {
+	public boolean guardarSesion(Piso p) {
 		try {
-			FileOutputStream archivoSalida = new FileOutputStream(rutaMosaico);
+			FileOutputStream archivoSalida = new FileOutputStream(rutaSesion);
 			ObjectOutputStream salida = new ObjectOutputStream(archivoSalida);
-			salida.writeObject(m);
-			salida.close();
-			archivoSalida.close();
-
-			archivoSalida = new FileOutputStream(rutaPiso);
-			salida = new ObjectOutputStream(archivoSalida);
 			salida.writeObject(p);
 			salida.close();
 			archivoSalida.close();
@@ -142,11 +108,8 @@ public class Almacenamiento {
 	 * 
 	 */
 	public void borrarSesion() {
-		File archivoPiso = new File(rutaPiso);
-		File archivoMosaico = new File(rutaMosaico);
-		if (archivoPiso.exists())
-			archivoPiso.delete();
-		if (archivoMosaico.exists())
-			archivoMosaico.delete();
+		File archivoSesion = new File(rutaSesion);
+		if (archivoSesion.exists())
+			archivoSesion.delete();
 	}
 }
