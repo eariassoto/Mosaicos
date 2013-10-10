@@ -56,7 +56,7 @@ public class Terminal{
             "rot[ ]{1}[-]{1}90",
             "rot[ ]{1}[+]{1}180",
             "rot[ ]{1}[-]{1}180",
-            "col[ ]{1}[1-2]{1}[ ]{1}[1-"+mosaico.getCantidadColores()+"]{1}",
+            "col[ ]{1}[1-2]{1}[ ]{1}[0-9]{1,3}",
             "pis[ ]{1}[1-9]{1}[0-9]{0,2}[ ]{1}[1-9]{1}[0-9]{0,2}",
             "gen",
             "exp"};
@@ -64,7 +64,7 @@ public class Terminal{
         p2 = 0;
         setComandos();
     }
-
+    
     /**
      * Crea la lista con los comandos.
      */
@@ -144,8 +144,11 @@ public class Terminal{
             return "Mosaico girado 180° a la izquierda.";
             case 5:
             // cambiar colores
-            mosaico.setColor(p1, p2);
-            return "Color #"+p1+" cambiado correctamente.";
+            if(p2 > 0 && p2 <= mosaico.getCantidadColores()){
+                mosaico.setColor(p1, p2);
+                return "Color #"+p1+" cambiado correctamente.";
+            }else
+                return "Codigo de color no reconocido.";
             case 6:
             // cambiar dimensiones 
             piso.setTamano(p1, p2);

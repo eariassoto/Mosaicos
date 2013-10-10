@@ -76,7 +76,7 @@ public class VentanaPrincipal extends JFrame {
 		this.lblPatron = new JLabel[4];
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(480, 450);
+		this.setSize(510, 470);
 		crearVentana();
 	}
 
@@ -90,23 +90,23 @@ public class VentanaPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		txtEntrada.setBounds(200, 140, 221, 20);
+		txtEntrada.setBounds(230, 140, 221, 20);
 		contentPane.add(txtEntrada);
 		txtEntrada.setColumns(10);
 
 		txtEstado.setEditable(false);
-		txtEstado.setBounds(200, 30, 221, 80);
+		txtEstado.setBounds(230, 30, 221, 80);
 		contentPane.add(txtEstado);
 
 		txtComandos.setEditable(false);
-		txtComandos.setBounds(200, 215, 350, 200);
+		txtComandos.setBounds(230, 215, 350, 200);
 		contentPane.add(txtComandos);
 
 		txtColores.setEditable(false);
-		txtColores.setBounds(15, 360, 250, 100);
+		txtColores.setBounds(15, 360, 200, 100);
 		contentPane.add(txtColores);
 
-		lblMsj.setBounds(200, 165, 221, 14);
+		lblMsj.setBounds(230, 165, 221, 14);
 		contentPane.add(lblMsj);
 
 		lbl[0] = new JLabel("Mosaico seleccionado:");
@@ -114,15 +114,15 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.add(lbl[0]);
 
 		lbl[1] = new JLabel("Configuraciones actuales:");
-		lbl[1].setBounds(200, 10, 160, 14);
+		lbl[1].setBounds(230, 10, 160, 14);
 		contentPane.add(lbl[1]);
 
 		lbl[2] = new JLabel("Terminal:");
-		lbl[2].setBounds(200, 120, 100, 14);
+		lbl[2].setBounds(230, 120, 100, 14);
 		contentPane.add(lbl[2]);
 
 		lbl[3] = new JLabel("Comandos:");
-		lbl[3].setBounds(200, 200, 100, 14);
+		lbl[3].setBounds(230, 200, 100, 14);
 		contentPane.add(lbl[3]);
 
 		lbl[4] = new JLabel("Patrones disponibles:");
