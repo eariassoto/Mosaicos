@@ -16,195 +16,207 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 
 public class Controlador {
-    /** El objeto mosaico. */
-    private Mosaico mosaico;
+	/** El objeto mosaico. */
+	private Mosaico mosaico;
 
-    /** El objeto piso. */
-    private Piso piso;
+	/** El objeto piso. */
+	private Piso piso;
 
-    /** El objeto interfaz. */
-    private Interfaz interfaz;
+	/** El objeto interfaz. */
+	private Interfaz interfaz;
 
-    /** El objeto ventana principal. */
-    private VentanaPrincipal ventanaPrincipal;
+	/** El objeto ventana principal. */
+	private VentanaPrincipal ventanaPrincipal;
 
-    /** El objeto terminal. */
-    private Terminal terminal;
+	/** El objeto terminal. */
+	private Terminal terminal;
 
-    /** El objeto almacenamiento. */
-    private Almacenamiento almacenamiento;
+	/** El objeto almacenamiento. */
+	private Almacenamiento almacenamiento;
 
-    /** Campo de texto para entrada. */
-    private JTextField txtEntrada;
+	/** Campo de texto para entrada. */
+	private JTextField txtEntrada;
 
-    /** Areas de texto. */
-    private JTextArea txtEstado, txtComandos, txtColores;
+	/** Areas de texto. */
+	private JTextArea txtEstado, txtComandos, txtColores;
 
-    /** Etiqueta para mensajes. */
-    private JLabel lblMsj;
+	/** Etiqueta para mensajes. */
+	private JLabel lblMsj;
 
-    /**
-     * Instancia un nuevo controlador.
-     */
-    public Controlador() {
-        almacenamiento = new Almacenamiento();
-        if (cargarAnterior()) {
-            // si hay datos guardados, lealos
-            piso = almacenamiento.leerSesion();
-            mosaico = piso.getMosaico();
-            if(piso == null){
-                mosaico = new Mosaico();
-                piso = new Piso(mosaico);
-                this.setDefaults();
-            }
-        } else {
-            mosaico = new Mosaico();
-            piso = new Piso(mosaico);
-            this.setDefaults();
-        }
+	/**
+	 * Controla si ya se ha hecho al menos un cambio, para evitar ventana
+	 * molesta de guardar al final.
+	 */
+	private boolean algunCambio;
 
-        txtEntrada = new JTextField();
-        txtEstado = new JTextArea();
-        txtComandos = new JTextArea();
-        txtColores = new JTextArea();
-        lblMsj = new JLabel();
+	/**
+	 * Instancia un nuevo controlador.
+	 */
+	public Controlador() {
+		algunCambio = false;
+		almacenamiento = new Almacenamiento();
+		if (cargarAnterior()) {
+			// si hay datos guardados, lealos
+			piso = almacenamiento.leerSesion();
+			mosaico = piso.getMosaico();
+			if (piso == null) {
+				mosaico = new Mosaico();
+				piso = new Piso(mosaico);
+				this.setDefaults();
+			}
+		} else {
+			mosaico = new Mosaico();
+			piso = new Piso(mosaico);
+			this.setDefaults();
+		}
 
-        ventanaPrincipal = new VentanaPrincipal(txtEntrada, txtEstado,
-            txtComandos, txtColores, lblMsj, mosaico);
-        interfaz = new Interfaz(ventanaPrincipal, piso);
-        terminal = new Terminal(mosaico, piso, interfaz, almacenamiento);
-        this.setTextos("Ingresa un comando en la terminal.");
-        this.setListeners();
-    }
+		txtEntrada = new JTextField();
+		txtEstado = new JTextArea();
+		txtComandos = new JTextArea();
+		txtColores = new JTextArea();
+		lblMsj = new JLabel();
 
-    /**
-     * Pregunta al usuario si desea cargar los datos de la sesion anterior.
-     * 
-     * @return true, si el usuario decide que si
-     */
-    private boolean cargarAnterior() {
-        Object[] o = new Object[] { "Si", "No" };
-        return (almacenamiento.haySesionGuardada() && JOptionPane
-            .showOptionDialog(
-                null,
-                "�Desea cargar el mosaico creado en la sesion anterior?",
-                "Mosaicos", JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE, null, o, null) == 0) ? true
-        : false;
-    }
+		ventanaPrincipal = new VentanaPrincipal(txtEntrada, txtEstado,
+				txtComandos, txtColores, lblMsj, mosaico);
+		interfaz = new Interfaz(ventanaPrincipal, piso);
+		terminal = new Terminal(mosaico, piso, interfaz, almacenamiento);
+		this.setTextos("Ingresa un comando en la terminal.");
+		this.setListeners();
+	}
 
-    /**
-     * Establece valos predefinidos para el mosaico y el piso, en caso que el usuario
-     * desee una sesion nueva.
-     */
-    private void setDefaults() {
-        mosaico.setLado(4);
-        mosaico.setColor(1, 3);
-        mosaico.setColor(2, 4);
-        mosaico.setPatron(1);
-        piso.setTamano(24, 32);
-        piso.generarPiso();
-    }
+	/**
+	 * Pregunta al usuario si desea cargar los datos de la sesion anterior.
+	 * 
+	 * @return true, si el usuario decide que si
+	 */
+	private boolean cargarAnterior() {
+		Object[] o = new Object[] { "Si", "No" };
+		return (almacenamiento.haySesionGuardada() && JOptionPane
+				.showOptionDialog(
+						null,
+						"Desea cargar el mosaico creado en la sesion anterior?",
+						"Mosaicos", JOptionPane.YES_NO_OPTION,
+						JOptionPane.WARNING_MESSAGE, null, o, null) == 0) ? true
+				: false;
+	}
 
-    /**
-     * Agrega los escuchadores tanto del campo de texto como el de cierre de la VentanaPrincipal.
-     */
-    private void setListeners() {
-        txtEntrada.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    // aqui procesa el comando
-                    setTextos(terminal.procesarComando(txtEntrada.getText()));
-                    // refresca la venta principal
-                    interfaz.cargarVentana();
-                    txtEntrada.setText("");
-                    txtEntrada.requestFocus();
-                }
-            });
+	/**
+	 * Establece valos predefinidos para el mosaico y el piso, en caso que el
+	 * usuario desee una sesion nueva.
+	 */
+	private void setDefaults() {
+		mosaico.setLado(4);
+		mosaico.setColor(1, 3);
+		mosaico.setColor(2, 4);
+		mosaico.setPatron(1);
+		piso.setTamano(24, 32);
+		piso.generarPiso();
+	}
 
-        ventanaPrincipal.addWindowListener( new WindowAdapter() {
-                public void windowOpened( WindowEvent e ){
-                    txtEntrada.requestFocus();
-                }
-            }); 
+	/**
+	 * Agrega los escuchadores tanto del campo de texto como el de cierre de la
+	 * VentanaPrincipal.
+	 */
+	private void setListeners() {
+		txtEntrada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				algunCambio = (!algunCambio) ? true : false;
+				// aqui procesa el comando
+				setTextos(terminal.procesarComando(txtEntrada.getText()));
+				// refresca la venta principal
+				interfaz.cargarVentana();
+				txtEntrada.setText("");
+				txtEntrada.requestFocus();
+			}
+		});
 
-        WindowListener exitListener = new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    Object[] o = new Object[] { "Si", "No" };
-                    int decisionSalida = interfaz
-                        .dialogoOpcion(
-                            "Desea guardar el mosaico creado para usarlo en la proxima sesion?",
-                            "Mosaicos", o, JOptionPane.QUESTION_MESSAGE);
-                    if (decisionSalida == 0) {
-                        boolean sesionGuardada = almacenamiento.guardarSesion(piso);
-                        if(!sesionGuardada)
-                            interfaz.dialogoMensaje("Lo sentimos, hubo un error al intentar guardar la sesion", "Mosaicos", JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        if (decisionSalida == 1) {
-                            almacenamiento.borrarSesion();
-                        }
-                    }
-                }
-            };
-        ventanaPrincipal.addWindowListener(exitListener);
-    }
+		ventanaPrincipal.addWindowListener(new WindowAdapter() {
+			public void windowOpened(WindowEvent e) {
+				txtEntrada.requestFocus();
+			}
+		});
 
-    /**
-     * Genera el estado actual del programa.
-     * 
-     * @return hilera con el resultado
-     */
-    private String generarEstado() {
-        String estado = "";
-        estado += "Dimensiones del mosaico: " + mosaico.getLado()+"x"+mosaico.getLado();
-        estado += "\nPatron del mosaico: #"
-        + String.valueOf(mosaico.getNumPatron()) + " ("
-        + mosaico.getNomPatron() + ").";
-        estado += "\nColor #1: " + mosaico.getNombreColor(1) + ".";
-        estado += "\nColor #2: " + mosaico.getNombreColor(2) + ".";
-        estado += "\nDimensiones del piso: " + piso.getN() + "x" + piso.getM()
-        + ".";
-        return estado;
-    }
+		WindowListener exitListener = new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Object[] o = new Object[] { "Si", "No" };
+				if (algunCambio) {
+					int decisionSalida = interfaz
+							.dialogoOpcion(
+									"Desea guardar el mosaico creado para usarlo en la proxima sesion?",
+									"Mosaicos", o, JOptionPane.QUESTION_MESSAGE);
+					if (decisionSalida == 0) {
+						boolean sesionGuardada = almacenamiento
+								.guardarSesion(piso);
+						if (!sesionGuardada)
+							interfaz.dialogoMensaje(
+									"Lo sentimos, hubo un error al intentar guardar la sesion",
+									"Mosaicos", JOptionPane.ERROR_MESSAGE);
+					} else if (decisionSalida == 1)
+						almacenamiento.borrarSesion();
+				}
+			}
+		};
+		ventanaPrincipal.addWindowListener(exitListener);
+	}
 
-    /**
-     * Genera una hilera con la lista de colores disponibles.
-     * 
-     * @return resultado
-     */
-    private String generarListaColores() {
-        String l = "";
-        int cantCol = mosaico.getCantidadColores();
-        int n = 1;
-        while (n <= cantCol) {
-            l += String.valueOf(n) + ". " + mosaico.getNombre(n - 1);
-            l += (n % 3 == 0) ? "\n" : "  ";
-            n++;
-        }
-        return l;
-    }
+	/**
+	 * Genera el estado actual del programa.
+	 * 
+	 * @return hilera con el resultado
+	 */
+	private String generarEstado() {
+		String estado = "";
+		estado += "Dimensiones del mosaico: " + mosaico.getLado() + "x"
+				+ mosaico.getLado();
+		estado += "\nPatron del mosaico: #"
+				+ String.valueOf(mosaico.getNumPatron()) + " ("
+				+ mosaico.getNomPatron() + ").";
+		estado += "\nColor #1: " + mosaico.getNombreColor(1) + ".";
+		estado += "\nColor #2: " + mosaico.getNombreColor(2) + ".";
+		estado += "\nDimensiones del piso: " + piso.getN() + "x" + piso.getM()
+				+ ".";
+		return estado;
+	}
 
-    /**
-     * Establece los mensajes de los campos de texto y la etiqueta.
-     * 
-     * @param s
-     *            hilera de la etiqueta
-     */
-    private void setTextos(String s) {
-        txtEstado.setText(generarEstado());
-        txtComandos.setText(terminal.getListaComandos());
-        txtColores.setText(generarListaColores());
-        lblMsj.setText(s);
-    }
+	/**
+	 * Genera una hilera con la lista de colores disponibles.
+	 * 
+	 * @return resultado
+	 */
+	private String generarListaColores() {
+		String l = "";
+		int cantCol = mosaico.getCantidadColores();
+		int n = 1;
+		while (n <= cantCol) {
+			l += String.valueOf(n) + ". " + mosaico.getNombre(n - 1);
+			l += (n % 3 == 0) ? "\n" : "  ";
+			n++;
+		}
+		return l;
+	}
 
-    /**
-     * Metodo main.
-     * 
-     * @param emma
-     *            argumentos
-     */
-    public static void main(String emma[]) {
-        @SuppressWarnings("unused")
-        Controlador c = new Controlador();
-    }
+	/**
+	 * Establece los mensajes de los campos de texto y la etiqueta.
+	 * 
+	 * @param s
+	 *            hilera de la etiqueta
+	 */
+	private void setTextos(String s) {
+		txtEstado.setText(generarEstado());
+		txtComandos.setText(terminal.getListaComandos());
+		txtColores.setText(generarListaColores());
+		lblMsj.setText(s);
+	}
+
+	/**
+	 * Metodo main.
+	 * 
+	 * @param emma
+	 *            argumentos
+	 */
+	public static void main(String emma[]) {
+		@SuppressWarnings("unused")
+		Controlador c = new Controlador();
+	}
 }

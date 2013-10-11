@@ -195,7 +195,7 @@ public class VentanaPrincipal extends JFrame {
 		private int lado;
 
 		/** The matriz mosaico. */
-		private int[][] matrizMosaico;
+		private Color[][] matrizMosaico;
 
 		/** La superficie donde se va a dibujar el mosaico. */
 		private BufferedImage superficie;
@@ -213,7 +213,7 @@ public class VentanaPrincipal extends JFrame {
 		 */
 		public CanvasPreview(Mosaico mos, int tamano) {
 			this.mosaico = mos;
-			matrizMosaico = mosaico.getMatrizMosaico();
+			matrizMosaico = this.mosaico.getMatrizMosaico();
 			lado = (int) tamano / matrizMosaico.length;
 			superficie = new BufferedImage(tamano, tamano,
 					BufferedImage.TYPE_INT_RGB);
@@ -227,13 +227,8 @@ public class VentanaPrincipal extends JFrame {
 			for (int i = 0; i < matrizMosaico.length; i++) {
 				coordX = 0;
 				for (int j = 0; j < matrizMosaico.length; j++) {
-					if (matrizMosaico[i][j] == 1) {
-						g.setColor(mosaico.getColor(1));
+						g.setColor(matrizMosaico[i][j]);
 						g.fillRect(coordX, coordY, lado, lado);
-					} else {
-						g.setColor(mosaico.getColor(2));
-						g.fillRect(coordX, coordY, lado, lado);
-					}
 					coordX += lado;
 				}
 				coordY += lado;

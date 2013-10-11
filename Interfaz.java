@@ -2,10 +2,12 @@
  * @author Emmanuel Arias Soto
  * @version 0.1
  */
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -134,7 +136,7 @@ public class Interfaz {
          * @param matrizPiso
          *            la matriz a dibujar
          */
-        public CanvasPiso(int[][] matrizPiso) {
+        public CanvasPiso(Color[][] matrizPiso) {
             // determina el tamano de las celdas dependiendo del ancho y del largo, esto para evitar celdas "recortadas".
             lado = (dimAncho / matrizPiso.length < dimLargo / matrizPiso[0].length) ? (int) (dimAncho / matrizPiso.length)
             : (int) (dimLargo / matrizPiso[0].length);
@@ -147,20 +149,15 @@ public class Interfaz {
             view = new JLabel(new ImageIcon(superficie));
 
             Graphics g = superficie.getGraphics();
-            g.setColor(piso.getColor(1));
+            g.setColor(Color.WHITE);
             g.fillRect(0, 0, largo, ancho);
 
             int coordX = 0, coordY = 0;
             for (int i = 0; i < matrizPiso.length; i++) {
                 coordX = 0;
                 for (int j = 0; j < matrizPiso[0].length; j++) {
-                    if (matrizPiso[i][j] == 1) {
-                        g.setColor(piso.getColor(1));
-                        g.fillRect(coordX, coordY, lado, lado);
-                    } else {
-                        g.setColor(piso.getColor(2));
-                        g.fillRect(coordX, coordY, lado, lado);
-                    }
+                        g.setColor(matrizPiso[i][j]);
+                        g.fillRect(coordX, coordY, lado, lado); 
                     coordX += lado;
                 }
                 coordY += lado;

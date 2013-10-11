@@ -15,7 +15,7 @@ public class Piso implements Serializable {
     private Mosaico mosaico;
 
     /** La matriz usada para generar el piso de mosaicos. */
-    private int[][] piso;
+    private Color[][] piso;
 
     /** Los tamanos n y m de la matriz. */
     private int n, m;
@@ -76,8 +76,8 @@ public class Piso implements Serializable {
      * Genera una matriz nxm y la rellena con la matriz obtenida de mosaico.
      */
     public void generarPiso() {
-        piso = new int[n][m];
-        int[][] patron = mosaico.getMatrizMosaico();
+        piso = new Color[n][m];
+        Color[][] patron = mosaico.getMatrizMosaico();
         int ladoMos = mosaico.getLado();
         for (int i = 0; i < piso.length; i++)
             for (int j = 0; j < piso[0].length; j++)
@@ -89,18 +89,7 @@ public class Piso implements Serializable {
      * 
      * @return the piso
      */
-    public int[][] getPiso() {
+    public Color[][] getPiso() {
         return piso;
-    }
-
-    /**
-     * Devuelve un color del mosaico.
-     * 
-     * @param c
-     *            color deseado
-     * @return Color correspondiente
-     */
-    public Color getColor(int c) {
-        return mosaico.getColor(c);
     }
 }

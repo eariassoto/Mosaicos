@@ -12,9 +12,6 @@ public class Mosaico implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /** La matriz de enteros mosaico, donde se guardar el mosaico actual. */
-    private int[][] mosaico;
-
     /** Variables para manejar el tamano del mosaico y el tipo de patron. */
     private int lado, patron;
 
@@ -23,6 +20,9 @@ public class Mosaico implements Serializable {
      * manejar mas colores).
      */
     private Color color1, color2;
+    
+    /** La matriz del mosaico, una vez que se crea guarda los colores respectivos. */
+    private Color[][] mosaico;
 
     /**
      * El vector con los colores que se pueden hacer (se pueden agregar mas sin
@@ -56,7 +56,7 @@ public class Mosaico implements Serializable {
     public Mosaico() {
         lado = 0;
         patron = 0;
-        mosaico = new int[lado][lado];
+        mosaico = new Color[lado][lado];
         inicializarColores();
     }
 
@@ -73,11 +73,11 @@ public class Mosaico implements Serializable {
      *            color 2
      */
     public Mosaico(int l, int p, int c1, int c2) {
-        inicializarColores();
         setLado(l);
-        setPatron(p);
+        inicializarColores();
         setColor(1, c1);
         setColor(2, c2);
+        setPatron(p);
     }
 
     private void inicializarColores(){
@@ -101,16 +101,6 @@ public class Mosaico implements Serializable {
             color2 = color[opcion - 1];
     }
 
-    /**
-     * Devuelve un color.
-     * 
-     * @param c
-     *            numero de color deseado
-     * @return Color correspondiente
-     */
-    public Color getColor(int c) {
-        return (c == 1) ? color1 : color2;
-    }
 
     /**
      * Devuelve el nombre ya sea del color 1 o del 2 en especifico.
@@ -162,20 +152,19 @@ public class Mosaico implements Serializable {
                 switch (o) {
                     case 1:
                     // diagonal de izq a der
-                    mosaico[i][j] = (i == j) ? 1 : 2;
+                    mosaico[i][j] = (i == j) ? color1 : color2;
                     break;
                     case 2:
                     // cuadros sup izq e inf der
-                    mosaico[i][j] = ((i <= mitad && j <= mitad) || (i > mitad && j > mitad)) ? 1
-                    : 2;
+                    mosaico[i][j] = ((i <= mitad && j <= mitad) || (i > mitad && j > mitad)) ? color1 : color2;
                     break;
                     case 3:
                     // uno si uno no
-                    mosaico[i][j] = ((j % 2 == 0 && i % 2 == 0)) ? 1 : 2;
+                    mosaico[i][j] = ((j % 2 == 0 && i % 2 == 0)) ? color1 : color2;
                     break;
                     case 4:
                     mosaico[i][j] = ((i == j && i % 2 == 0 && j % 2 == 0) || i
-                        + j == lado - 1) ? 1 : 2;
+                        + j == lado - 1) ? color1 : color2;
                     break;
         }
     }
@@ -216,7 +205,7 @@ public class Mosaico implements Serializable {
      */
     public void setLado(int l) {
         this.lado = l;
-        mosaico = new int[lado][lado];
+        mosaico = new Color[lado][lado];
     }
 
     /**
@@ -233,7 +222,7 @@ public class Mosaico implements Serializable {
      * 
      * @return the patron
      */
-    public int[][] getMatrizMosaico() {
+    public Color[][] getMatrizMosaico() {
         return mosaico;
     }
 
@@ -245,8 +234,8 @@ public class Mosaico implements Serializable {
      *            matriz
      * @return matriz transpuesta
      */
-    private int[][] transponerMatriz(int[][] m) {
-        int[][] temp = new int[m.length][m.length];
+    private Color[][] transponerMatriz(Color[][] m) {
+    	Color[][] temp = new Color[m.length][m.length];
         for (int i = 0; i < m.length; i++)
             for (int j = 0; j < m.length; j++)
                 temp[j][i] = m[i][j];
@@ -260,8 +249,8 @@ public class Mosaico implements Serializable {
      *            matriz
      * @return nueva matriz con filas revertidas
      */
-    private int[][] revertirFilasMatriz(int[][] m) {
-        int[][] temp = new int[m.length][m.length];
+    private Color[][] revertirFilasMatriz(Color[][] m) {
+    	Color[][] temp = new Color[m.length][m.length];
         for (int i = 0; i < m.length; i++) {
             int c = 0;
             for (int j = m.length - 1; j >= 0; j--)
@@ -277,8 +266,8 @@ public class Mosaico implements Serializable {
      *            matriz
      * @return nueva matriz con columnas revertidas
      */
-    private int[][] revertirColumnasMatriz(int[][] m) {
-        int[][] temp = new int[m.length][m.length];
+    private Color[][] revertirColumnasMatriz(Color[][] m) {
+    	Color[][] temp = new Color[m.length][m.length];
         for (int i = 0; i < m.length; i++) {
             int c = 0;
             for (int j = m.length - 1; j >= 0; j--) 
