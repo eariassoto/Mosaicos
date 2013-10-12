@@ -171,8 +171,8 @@ public class Terminal {
 			return "Mosaico girado 180 grados a la izquierda.";
 		case 5:
 			// cambiar colores
-			color = JColorChooser.showDialog(null, "Seleccione un color", color );
 			if (p1 > 0 && p1 <= mosaico.getCantidadColores()) {
+				color = JColorChooser.showDialog(null, "Seleccione un color", color );
 				mosaico.setColor(p1, color);
 				mosaico.generarMosaico();
 				piso.generarPiso();
