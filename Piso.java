@@ -1,15 +1,21 @@
 /*
- * La clase Piso contiene la representacion logica de la matriz de mosaicos
- * 
  * @author Emmanuel Arias Soto
  * @version 0.1
  */
 import java.awt.Color;
 import java.io.Serializable;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Piso.
+ */
 public class Piso implements Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    
+    /** Constante para indcar el mayor tamano permitido para el piso. */
+    private final int MAXIMO_LADO = 499;
 
     /** El objeto de donde se obtenda la informacion del mosaico. */
     private Mosaico mosaico;
@@ -22,9 +28,8 @@ public class Piso implements Serializable {
 
     /**
      * Instancia un nuevo piso.
-     * 
-     * @param m
-     *            objeto mosaico que el usuario esta o ha definido.
+     *
+     * @param mosaico the mosaico
      */
     public Piso(Mosaico mosaico) {
         this.mosaico = mosaico;
@@ -92,4 +97,13 @@ public class Piso implements Serializable {
     public Color[][] getPiso() {
         return piso;
     }
+
+	/**
+	 * Indica que tan grande puede ser el piso.
+	 *
+	 * @return maximo de lado
+	 */
+	public int getMaxLado() {
+		return MAXIMO_LADO;
+	}
 }

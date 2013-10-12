@@ -1,6 +1,6 @@
 /*
  * @author Emmanuel Arias Soto
- * @version 0.1
+ * @version 0.2
  */
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,7 +38,7 @@ public class VentanaPrincipal extends JFrame {
 	private JLabel[] lbl, lblPatron;
 
 	/** Areas de texto con texto. */
-	private JTextArea txtEstado, txtComandos, txtColores;
+	private JTextArea txtEstado, txtComandos;
 
 	/** Clases para dibujar las vistas previas. */
 	private CanvasPreview canvasPreview, canvasPatron;
@@ -55,28 +55,24 @@ public class VentanaPrincipal extends JFrame {
 	 *            area de texto
 	 * @param txtC
 	 *            area de texto
-	 * @param txtCol
-	 *            area de texto
 	 * @param lblMsj
 	 *            etiqueta para mensajes
 	 * @param m
 	 *            objeto mosaico
 	 */
-	public VentanaPrincipal(JTextField txtE, JTextArea txtA, JTextArea txtC,
-			JTextArea txtCol, JLabel lblMsj, Mosaico m) {
+	public VentanaPrincipal(JTextField txtE, JTextArea txtA, JTextArea txtC, JLabel lblMsj, Mosaico m) {
 		super("Mosaicos");
 		this.txtEntrada = txtE;
 		this.txtComandos = txtC;
 		this.txtEstado = txtA;
-		this.txtColores = txtCol;
 		this.lblMsj = lblMsj;
 		this.mosaico = m;
 
-		this.lbl = new JLabel[10];
+		this.lbl = new JLabel[9];
 		this.lblPatron = new JLabel[4];
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(510, 470);
+		this.setSize(510, 400);
 		crearVentana();
 	}
 
@@ -101,10 +97,6 @@ public class VentanaPrincipal extends JFrame {
 		txtComandos.setEditable(false);
 		txtComandos.setBounds(230, 215, 350, 200);
 		contentPane.add(txtComandos);
-
-		txtColores.setEditable(false);
-		txtColores.setBounds(15, 360, 200, 100);
-		contentPane.add(txtColores);
 
 		lblMsj.setBounds(230, 165, 221, 14);
 		contentPane.add(lblMsj);
@@ -145,29 +137,25 @@ public class VentanaPrincipal extends JFrame {
 		lbl[8].setBounds(105, 285, 14, 14);
 		contentPane.add(lbl[8]);
 
-		lbl[9] = new JLabel("Colores Disponibles: ");
-		lbl[9].setBounds(15, 345, 140, 14);
-		contentPane.add(lbl[9]);
-
-		mosaicoPatron = new Mosaico(7, 1, 1, 2);
+		mosaicoPatron = new Mosaico(7, 1);
 		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
 		lblPatron[0] = canvasPatron.view;
 		lblPatron[0].setBounds(30, 220, 65, 50);
 		contentPane.add(lblPatron[0]);
 
-		mosaicoPatron = new Mosaico(7, 2, 1, 2);
+		mosaicoPatron = new Mosaico(7, 2);
 		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
 		lblPatron[1] = canvasPatron.view;
 		lblPatron[1].setBounds(120, 220, 65, 50);
 		contentPane.add(lblPatron[1]);
 
-		mosaicoPatron = new Mosaico(7, 3, 1, 2);
+		mosaicoPatron = new Mosaico(7, 3);
 		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
 		lblPatron[2] = canvasPatron.view;
 		lblPatron[2].setBounds(30, 285, 65, 50);
 		contentPane.add(lblPatron[2]);
 
-		mosaicoPatron = new Mosaico(7, 4, 1, 2);
+		mosaicoPatron = new Mosaico(7, 4);
 		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
 		lblPatron[3] = canvasPatron.view;
 		lblPatron[3].setBounds(120, 285, 65, 50);

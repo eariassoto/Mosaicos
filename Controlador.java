@@ -38,7 +38,7 @@ public class Controlador {
 	private JTextField txtEntrada;
 
 	/** Areas de texto. */
-	private JTextArea txtEstado, txtComandos, txtColores;
+	private JTextArea txtEstado, txtComandos;
 
 	/** Etiqueta para mensajes. */
 	private JLabel lblMsj;
@@ -73,11 +73,10 @@ public class Controlador {
 		txtEntrada = new JTextField();
 		txtEstado = new JTextArea();
 		txtComandos = new JTextArea();
-		txtColores = new JTextArea();
 		lblMsj = new JLabel();
 
 		ventanaPrincipal = new VentanaPrincipal(txtEntrada, txtEstado,
-				txtComandos, txtColores, lblMsj, mosaico);
+				txtComandos, lblMsj, mosaico);
 		interfaz = new Interfaz(ventanaPrincipal, piso);
 		terminal = new Terminal(mosaico, piso, interfaz, almacenamiento);
 		this.setTextos("Ingresa un comando en la terminal.");
@@ -106,9 +105,8 @@ public class Controlador {
 	 */
 	private void setDefaults() {
 		mosaico.setLado(4);
-		mosaico.setColor(1, 3);
-		mosaico.setColor(2, 4);
 		mosaico.setPatron(1);
+		mosaico.generarMosaico();
 		piso.setTamano(24, 32);
 		piso.generarPiso();
 	}
@@ -172,28 +170,11 @@ public class Controlador {
 		estado += "\nPatron del mosaico: #"
 				+ String.valueOf(mosaico.getNumPatron()) + " ("
 				+ mosaico.getNomPatron() + ").";
-		estado += "\nColor #1: " + mosaico.getNombreColor(1) + ".";
-		estado += "\nColor #2: " + mosaico.getNombreColor(2) + ".";
+		estado += "\nColor #1: " + mosaico.getCodigoColor(1) + ".";
+		estado += "\nColor #2: " + mosaico.getCodigoColor(2) + ".";
 		estado += "\nDimensiones del piso: " + piso.getN() + "x" + piso.getM()
 				+ ".";
 		return estado;
-	}
-
-	/**
-	 * Genera una hilera con la lista de colores disponibles.
-	 * 
-	 * @return resultado
-	 */
-	private String generarListaColores() {
-		String l = "";
-		int cantCol = mosaico.getCantidadColores();
-		int n = 1;
-		while (n <= cantCol) {
-			l += String.valueOf(n) + ". " + mosaico.getNombre(n - 1);
-			l += (n % 3 == 0) ? "\n" : "  ";
-			n++;
-		}
-		return l;
 	}
 
 	/**
@@ -205,7 +186,6 @@ public class Controlador {
 	private void setTextos(String s) {
 		txtEstado.setText(generarEstado());
 		txtComandos.setText(terminal.getListaComandos());
-		txtColores.setText(generarListaColores());
 		lblMsj.setText(s);
 	}
 
