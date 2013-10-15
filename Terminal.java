@@ -150,25 +150,21 @@ public class Terminal {
 		case 1:
 			// girar 90 der
 			mosaico.girarMosaico(0);
-			mosaico.generarMosaico();
 			piso.generarPiso();
 			return "Mosaico girado 90 grados a la derecha.";
 		case 2:
 			// girar 90 izq
 			mosaico.girarMosaico(1);
-			mosaico.generarMosaico();
 			piso.generarPiso();
 			return "Mosaico girado 90 grados a la izquierda.";
 		case 3:
 			// girar 180 der
 			mosaico.girarMosaico(2);
-			mosaico.generarMosaico();
 			piso.generarPiso();
 			return "Mosaico girado 180 grados a la derecha.";
 		case 4:
 			// girar 180 izq
 			mosaico.girarMosaico(3);
-			mosaico.generarMosaico();
 			piso.generarPiso();
 			return "Mosaico girado 180 grados a la izquierda.";
 		case 5:
