@@ -8,7 +8,6 @@
 import java.awt.Color;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-
 import javax.swing.JColorChooser;
 
 public class Terminal {
@@ -39,7 +38,7 @@ public class Terminal {
 
 	/** Usado para que el usuario eliga un color */
 	private Color color;
-	
+
 	/** Usados para enviar parametros al separar el comando. */
 	private int p1, p2;
 
@@ -65,7 +64,8 @@ public class Terminal {
 				"mos[ ]{1}[1-" + mosaico.getCantidadPatrones()
 						+ "]{1}[ ][0-9]{1,3}", "rot[ ]{1}[+]{1}90",
 				"rot[ ]{1}[-]{1}90", "rot[ ]{1}[+]{1}180",
-				"rot[ ]{1}[-]{1}180", "col[ ]{1}[1-"+mosaico.getCantidadColores()+"]{1}",
+				"rot[ ]{1}[-]{1}180",
+				"col[ ]{1}[1-" + mosaico.getCantidadColores() + "]{1}",
 				"pis[ ]{1}[0-9]{1,3}[ ]{1}[0-9]{1,3}", "gen", "exp" };
 		p1 = 0;
 		p2 = 0;
@@ -76,18 +76,20 @@ public class Terminal {
 	 * Crea la lista con los comandos.
 	 */
 	private void setComandos() {
-		listaComandos = "1. mos p t --> Crea un nuevo mosaico con el \npatron[1-"
+		listaComandos = "1. mos p{1..."
 				+ mosaico.getCantidadPatrones()
-				+ "] y con un tamano[1-"
+				+ "} t{1..."
 				+ mosaico.getMaxLado()
-				+ "]."
-				+ "\n2. rot a --> Rota el mosaico en un \nangulo[+90,-90,+180,-180]."
-				+ "\n3. col c --> Cambia el color c[1,"+mosaico.getCantidadColores()+"]"
-				+ "\n4. pis n m --> Crea un piso n[1-"
+				+ "} --> Crea un nuevo mosaico \ncon el patron(p) y tamano(t)."
+				+ "\n2. rot a{+90,-90,+180,-180} --> Rota el mosaico en \nun angulo(a)."
+				+ "\n3. col c{1,"
+				+ mosaico.getCantidadColores()
+				+ "} --> Cambia el color #(c)"
+				+ "\n4. pis n{1..."
 				+ String.valueOf(piso.getMaxLado())
-				+ "] x m[1-"
+				+ "} m{1..."
 				+ String.valueOf(piso.getMaxLado())
-				+ "]"
+				+ "} --> Crea un piso de \ntamano (n) x (m)"
 				+ "\n5. gen --> Mostrar el piso generado en una \nventana nueva."
 				+ "\n6. exp --> Exporta el piso como una imagen PNG.";
 	}
@@ -172,7 +174,8 @@ public class Terminal {
 		case 5:
 			// cambiar colores
 			if (p1 > 0 && p1 <= mosaico.getCantidadColores()) {
-				color = JColorChooser.showDialog(null, "Seleccione un color", color );
+				color = JColorChooser.showDialog(null, "Seleccione un color",
+						color);
 				mosaico.setColor(p1, color);
 				mosaico.generarMosaico();
 				piso.generarPiso();

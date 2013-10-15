@@ -5,17 +5,14 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class VentanaPrincipal.
  */
@@ -72,7 +69,7 @@ public class VentanaPrincipal extends JFrame {
 		this.lblPatron = new JLabel[4];
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(510, 400);
+		this.setSize(550, 410);
 		crearVentana();
 	}
 
@@ -91,22 +88,22 @@ public class VentanaPrincipal extends JFrame {
 		txtEntrada.setColumns(10);
 
 		txtEstado.setEditable(false);
-		txtEstado.setBounds(230, 30, 221, 80);
+		txtEstado.setBounds(230, 30, 300, 80);
 		contentPane.add(txtEstado);
 
 		txtComandos.setEditable(false);
-		txtComandos.setBounds(230, 215, 350, 200);
+		txtComandos.setBounds(230, 205, 350, 200);
 		contentPane.add(txtComandos);
 
-		lblMsj.setBounds(230, 165, 221, 14);
+		lblMsj.setBounds(230, 165, 400, 20);
 		contentPane.add(lblMsj);
 
 		lbl[0] = new JLabel("Mosaico seleccionado:");
-		lbl[0].setBounds(10, 10, 140, 14);
+		lbl[0].setBounds(10, 10, 200, 14);
 		contentPane.add(lbl[0]);
 
 		lbl[1] = new JLabel("Configuraciones actuales:");
-		lbl[1].setBounds(230, 10, 160, 14);
+		lbl[1].setBounds(230, 10, 250, 14);
 		contentPane.add(lbl[1]);
 
 		lbl[2] = new JLabel("Terminal:");
@@ -114,27 +111,27 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.add(lbl[2]);
 
 		lbl[3] = new JLabel("Comandos:");
-		lbl[3].setBounds(230, 200, 100, 14);
+		lbl[3].setBounds(230, 190, 100, 14);
 		contentPane.add(lbl[3]);
 
 		lbl[4] = new JLabel("Patrones disponibles:");
-		lbl[4].setBounds(10, 200, 140, 14);
+		lbl[4].setBounds(10, 200, 200, 14);
 		contentPane.add(lbl[4]);
 
 		lbl[5] = new JLabel("#1");
-		lbl[5].setBounds(15, 220, 14, 14);
+		lbl[5].setBounds(15, 220, 50, 14);
 		contentPane.add(lbl[5]);
 
 		lbl[6] = new JLabel("#2");
-		lbl[6].setBounds(105, 220, 14, 14);
+		lbl[6].setBounds(105, 220, 50, 14);
 		contentPane.add(lbl[6]);
 
 		lbl[7] = new JLabel("#3");
-		lbl[7].setBounds(15, 285, 14, 14);
+		lbl[7].setBounds(15, 285, 50, 14);
 		contentPane.add(lbl[7]);
 
 		lbl[8] = new JLabel("#4");
-		lbl[8].setBounds(105, 285, 14, 14);
+		lbl[8].setBounds(105, 285, 50, 14);
 		contentPane.add(lbl[8]);
 
 		mosaicoPatron = new Mosaico(7, 1);
