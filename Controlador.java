@@ -59,11 +59,13 @@ public class Controlador {
 			piso = almacenamiento.leerSesion();
 			mosaico = piso.getMosaico();
 			if (piso == null) {
+				//hubo un error en la lectura
 				mosaico = new Mosaico();
 				piso = new Piso(mosaico);
-				this.setDefaults();
+				setDefaults();
 			}
 		} else {
+			// sesion nueva
 			mosaico = new Mosaico();
 			piso = new Piso(mosaico);
 			this.setDefaults();
@@ -88,13 +90,12 @@ public class Controlador {
 	 * @return true, si el usuario decide que si
 	 */
 	private boolean cargarAnterior() {
-		Object[] o = new Object[] { "Si", "No" };
 		return (almacenamiento.haySesionGuardada() && JOptionPane
 				.showOptionDialog(
 						null,
 						"Desea cargar el mosaico creado en la sesion anterior?",
 						"Mosaicos", JOptionPane.YES_NO_OPTION,
-						JOptionPane.WARNING_MESSAGE, null, o, null) == 0) ? true
+						JOptionPane.WARNING_MESSAGE, null, new Object[] { "Si", "No" }, null) == 0) ? true
 				: false;
 	}
 
@@ -117,9 +118,11 @@ public class Controlador {
 	private void setListeners() {
 		txtEntrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				algunCambio = (!algunCambio) ? true : false;
+				algunCambio = true	;
 				// aqui procesa el comando
+				txtEntrada.setEnabled(false);
 				setTextos(terminal.procesarComando(txtEntrada.getText()));
+				txtEntrada.setEnabled(true);
 				// refresca la venta principal
 				interfaz.cargarVentana();
 				txtEntrada.setText("");
@@ -136,12 +139,11 @@ public class Controlador {
 		WindowListener exitListener = new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				Object[] o = new Object[] { "Si", "No" };
 				if (algunCambio) {
 					int decisionSalida = interfaz
 							.dialogoOpcion(
 									"Desea guardar el mosaico creado para usarlo en la proxima sesion?",
-									"Mosaicos", o, JOptionPane.QUESTION_MESSAGE);
+									"Mosaicos", new Object[] { "Si", "No" }, JOptionPane.QUESTION_MESSAGE);
 					if (decisionSalida == 0) {
 						boolean sesionGuardada = almacenamiento
 								.guardarSesion(piso);
@@ -163,17 +165,14 @@ public class Controlador {
 	 * @return hilera con el resultado
 	 */
 	private String generarEstado() {
-		String estado = "";
-		estado += "Dimensiones del mosaico: " + mosaico.getLado() + "x"
-				+ mosaico.getLado();
-		estado += "\nPatron del mosaico: #"
+		return "Dimensiones del mosaico: " + mosaico.getLado() + "x"
+				+ mosaico.getLado() + "\nPatron del mosaico: #"
 				+ String.valueOf(mosaico.getNumPatron()) + " ("
-				+ mosaico.getNomPatron() + ").";
-		estado += "\nColor #1: " + mosaico.getCodigoColor(1) + ".";
-		estado += "\nColor #2: " + mosaico.getCodigoColor(2) + ".";
-		estado += "\nDimensiones del piso: " + piso.getN() + "x" + piso.getM()
+				+ mosaico.getNomPatron() + ")."
+				+ "\nColor #1: " + mosaico.getCodigoColor(1) + "."
+				+ "\nColor #2: " + mosaico.getCodigoColor(2) + "."
+				+ "\nDimensiones del piso: " + piso.getN() + "x" + piso.getM()
 				+ ".";
-		return estado;
 	}
 
 	/**

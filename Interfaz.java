@@ -41,9 +41,8 @@ public class Interfaz {
      *            the piso
      */
     public Interfaz(VentanaPrincipal ventanaPrincipal, Piso piso) {
-        Dimension tamanoPantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        this.dimLargo = (int) tamanoPantalla.getWidth() - 250;
-        this.dimAncho = (int) tamanoPantalla.getHeight() - 150;
+        this.dimLargo = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 250;
+        this.dimAncho = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 150;
         this.ventanaPrincipal = ventanaPrincipal;
         this.piso = piso;
     }

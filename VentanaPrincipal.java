@@ -69,7 +69,7 @@ public class VentanaPrincipal extends JFrame {
 		this.lblPatron = new JLabel[4];
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(550, 410);
+		this.setSize(575, 410);
 		crearVentana();
 	}
 

@@ -66,15 +66,6 @@ public class Mosaico implements Serializable {
 	}
 	
 	/**
-	 * Devuelve la cantidad de colores.
-	 *
-	 * @return cantidad colores
-	 */
-	public int getCantidadColores(){
-		return color.length;
-	}
-	
-	/**
 	 * Devuelve el codigo del color.
 	 *
 	 * @param c color

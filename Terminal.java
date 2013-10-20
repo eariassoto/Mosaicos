@@ -24,23 +24,11 @@ public class Terminal {
 	/** El objeto piso. */
 	private Piso piso;
 
-	/** El objeto patron. */
-	private Pattern patron;
-
 	/** El objeto matcher. */
 	private Matcher matcher;
 
 	/** Vector con las expresiones regulares para validar comandos. */
 	private String[] tipoComando;
-
-	/** Hilera para informar de la lista de comandos. */
-	private String listaComandos;
-
-	/** Usado para que el usuario eliga un color */
-	private Color color;
-
-	/** Usados para enviar parametros al separar el comando. */
-	private int p1, p2;
 
 	/**
 	 * Instancia una nueva terminal.
@@ -67,16 +55,15 @@ public class Terminal {
 				"rot[ ]{1}[-]{1}180",
 				"col[ ]{1}[1-" + mosaico.getCantidadColores() + "]{1}",
 				"pis[ ]{1}[0-9]{1,3}[ ]{1}[0-9]{1,3}", "gen", "exp" };
-		p1 = 0;
-		p2 = 0;
-		setComandos();
 	}
 
 	/**
-	 * Crea la lista con los comandos.
+	 * Informa sobre los comandos existentes.
+	 * 
+	 * @return hilera con la lista.
 	 */
-	private void setComandos() {
-		listaComandos = "1. mos p{1..."
+	public String getListaComandos() {
+		return "1. mos p{1..."
 				+ mosaico.getCantidadPatrones()
 				+ "} t{1..."
 				+ mosaico.getMaxLado()
@@ -95,15 +82,6 @@ public class Terminal {
 	}
 
 	/**
-	 * Informa sobre los comandos existentes.
-	 * 
-	 * @return hilera con la lista.
-	 */
-	public String getListaComandos() {
-		return listaComandos;
-	}
-
-	/**
 	 * Procesa comandos.
 	 * 
 	 * @param s
@@ -111,16 +89,9 @@ public class Terminal {
 	 * @return hilera con mensaje de resultado
 	 */
 	public String procesarComando(String s) {
-		for (int i = 0; i < tipoComando.length; i++) {
-			patron = Pattern.compile(tipoComando[i]);
-			matcher = patron.matcher(s);
-			if (matcher.matches()) {
-				String[] param = s.split(" ");
-				p1 = (param.length > 1) ? Integer.parseInt(param[1]) : 0;
-				p2 = (param.length > 2) ? Integer.parseInt(param[2]) : 0;
-				return ejecutarComando(i, p1, p2);
-			}
-		}
+		for (int i = 0; i < tipoComando.length; i++) 
+			if (Pattern.compile(tipoComando[i]).matcher(s).matches()) 
+				return ejecutarComando(i, (s.split(" ").length > 1) ? Integer.parseInt(s.split(" ")[1]) : 0, (s.split(" ").length > 2) ? Integer.parseInt(s.split(" ")[2]) : 0);
 		return "Comando no reconocido.";
 	}
 
@@ -149,6 +120,7 @@ public class Terminal {
 				return "Comando no reconocido.";
 		case 1:
 			// girar 90 der
+			System.out.println(p1+" "+p2);
 			mosaico.girarMosaico(0);
 			piso.generarPiso();
 			return "Mosaico girado 90 grados a la derecha.";
@@ -159,6 +131,7 @@ public class Terminal {
 			return "Mosaico girado 90 grados a la izquierda.";
 		case 3:
 			// girar 180 der
+			System.out.println(p1+" "+p2);
 			mosaico.girarMosaico(2);
 			piso.generarPiso();
 			return "Mosaico girado 180 grados a la derecha.";
@@ -170,9 +143,8 @@ public class Terminal {
 		case 5:
 			// cambiar colores
 			if (p1 > 0 && p1 <= mosaico.getCantidadColores()) {
-				color = JColorChooser.showDialog(null, "Seleccione un color",
-						color);
-				mosaico.setColor(p1, color);
+				mosaico.setColor(p1, JColorChooser.showDialog(null, "Seleccione un color",
+						null));
 				mosaico.generarMosaico();
 				piso.generarPiso();
 				return "Color #" + p1 + " cambiado correctamente.";

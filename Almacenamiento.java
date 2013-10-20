@@ -41,7 +41,6 @@ public class Almacenamiento {
 	 * @return hilera con un mensaje para el usuario.
 	 */
 	public String exportarImagen(BufferedImage bi) {
-		String s = "";
 		try {
 			fc = new JFileChooser("$HOME");
 			int ruta = fc.showSaveDialog(null);
@@ -50,14 +49,14 @@ public class Almacenamiento {
 					File archivoSalida = new File(fc.getSelectedFile()
 							.getPath() + ".png");
 					ImageIO.write(bi, "png", archivoSalida);
-					s = "Imagen guardada exitosamente.";
+					return "Imagen guardada exitosamente.";
 				} else
-					s = "Error al guardar la imagen.";
+					return "Error al guardar la imagen.";
+			else
+				return "Error al guardar la imagen.";
 		} catch (IOException ioe) {
-			s = "Error al guardar la imagen.";
-			return s;
+			return "Error al guardar la imagen.";
 		}
-		return (s=="")?"Error al guardar la imagen.":s;
 	}
 
 	/**
