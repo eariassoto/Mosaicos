@@ -129,8 +129,8 @@ public class Mosaico implements Serializable {
 						for (int j = 0; j < mosaico.length; j++)
 							mosaico[i][j]=color[0];
 					
-					int c = lado, filaSup = 0, filaInf = mosaico.length-1, columnaDer = mosaico.length-1, columnaIzq = 1;
-
+					int filaSup = 0, filaInf = mosaico.length-1, columnaDer = mosaico.length-1, columnaIzq = 1;
+					while(filaSup < mosaico.length || filaInf >=0 || columnaDer >= 0 || columnaIzq < mosaico.length){
 						for (int i = 0; i < mosaico.length; i++){
 							mosaico[filaSup][i] = color[1];
 							mosaico[i][columnaDer] = color[1];
@@ -138,7 +138,8 @@ public class Mosaico implements Serializable {
 						for(int j = columnaDer; j >= columnaIzq; j--)
 							mosaico[filaInf][j] = color[1];
 						for(int k = filaInf; k >= filaSup; k--)
-
+							mosaico[k][columnaIzq] = color[1];
+						}
 							//mosaico[i][j] = ((j % 2 == 0 && i % 2 == 0)) ? color[0]
 							//: color[1];
 					break;
