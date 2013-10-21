@@ -75,6 +75,14 @@ public class Mosaico implements Serializable {
 		
 		return "["+String.valueOf(color[c-1].getRed())+", "+String.valueOf(color[c-1].getGreen())+", "+String.valueOf(color[c-1].getBlue())+"]";
 	}
+	
+	/**
+	 * @return cantidad de colores
+	 * 
+	 */
+	 public int getCantidadColores(){
+		 return color.length;
+	 }
 
 	/**
 	 * Establece un color. El -1 es para que concuerde con el indice del vector.
@@ -101,25 +109,43 @@ public class Mosaico implements Serializable {
 	 */
 	public void generarMosaico() {
 		int mitad = (lado - 1) / 2;
-		for (int i = 0; i < mosaico.length; i++)
-			for (int j = 0; j < mosaico.length; j++)
 				switch (patron) {
 				case 1:
 					// diagonal de izq a der
-					mosaico[i][j] = (i == j) ? color[0] : color[1];
+					for (int i = 0; i < mosaico.length; i++)
+						for (int j = 0; j < mosaico.length; j++)
+							mosaico[i][j] = (i == j) ? color[0] : color[1];
 					break;
 				case 2:
 					// cuadros sup izq e inf der
-					mosaico[i][j] = ((i <= mitad && j <= mitad) || (i > mitad && j > mitad)) ? color[0]
+					for (int i = 0; i < mosaico.length; i++)
+						for (int j = 0; j < mosaico.length; j++)
+							mosaico[i][j] = ((i <= mitad && j <= mitad) || (i > mitad && j > mitad)) ? color[0]
 							: color[1];
 					break;
 				case 3:
 					// uno si uno no
-					mosaico[i][j] = ((j % 2 == 0 && i % 2 == 0)) ? color[0]
-							: color[1];
+					for (int i = 0; i < mosaico.length; i++)
+						for (int j = 0; j < mosaico.length; j++)
+							mosaico[i][j]=color[0];
+					
+					int c = lado, filaSup = 0, filaInf = mosaico.length-1, columnaDer = mosaico.length-1, columnaIzq = 1;
+
+						for (int i = 0; i < mosaico.length; i++){
+							mosaico[filaSup][i] = color[1];
+							mosaico[i][columnaDer] = color[1];
+						}
+						for(int j = columnaDer; j >= columnaIzq; j--)
+							mosaico[filaInf][j] = color[1];
+						for(int k = filaInf; k >= filaSup; k--)
+
+							//mosaico[i][j] = ((j % 2 == 0 && i % 2 == 0)) ? color[0]
+							//: color[1];
 					break;
 				case 4:
-					mosaico[i][j] = ((i == j && i % 2 == 0 && j % 2 == 0) || i
+				for (int i = 0; i < mosaico.length; i++)
+						for (int j = 0; j < mosaico.length; j++)
+							mosaico[i][j] = ((i == j && i % 2 == 0 && j % 2 == 0) || i
 							+ j == lado - 1) ? color[0] : color[1];
 					break;
 				}
