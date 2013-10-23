@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.params=mosaico
 comment0.target=Piso(Mosaico)
-comment0.text=\r\n\ Instancia\ un\ nuevo\ piso.\r\n\ \r\n\ @param\ m\r\n\ \ \ \ \ \ \ \ \ \ \ \ objeto\ mosaico\ que\ el\ usuario\ esta\ o\ ha\ definido.\r\n
+comment0.text=\r\n\ Instancia\ un\ nuevo\ piso.\r\n\r\n\ @param\ mosaico\ the\ mosaico\r\n
 comment1.params=n\ m
 comment1.target=void\ setTamano(int,\ int)
 comment1.text=\r\n\ Establece\ el\ tamano\ de\ la\ matriz.\r\n\ \r\n\ @param\ n\r\n\ \ \ \ \ \ \ \ \ \ \ \ tamano\ de\ las\ filas.\r\n\ @param\ m\r\n\ \ \ \ \ \ \ \ \ \ \ \ tamano\ de\ las\ columnas.\r\n
@@ -18,9 +18,9 @@ comment5.params=
 comment5.target=void\ generarPiso()
 comment5.text=\r\n\ Genera\ una\ matriz\ nxm\ y\ la\ rellena\ con\ la\ matriz\ obtenida\ de\ mosaico.\r\n
 comment6.params=
-comment6.target=int[][]\ getPiso()
+comment6.target=java.awt.Color[][]\ getPiso()
 comment6.text=\r\n\ Devuelve\ la\ matriz\ con\ la\ representacion\ del\ piso.\r\n\ \r\n\ @return\ the\ piso\r\n
-comment7.params=c
-comment7.target=java.awt.Color\ getColor(int)
-comment7.text=\r\n\ Devuelve\ un\ color\ del\ mosaico.\r\n\ \r\n\ @param\ c\r\n\ \ \ \ \ \ \ \ \ \ \ \ color\ deseado\r\n\ @return\ Color\ correspondiente\r\n
+comment7.params=
+comment7.target=int\ getMaxLado()
+comment7.text=\r\n\ Indica\ que\ tan\ grande\ puede\ ser\ el\ piso.\r\n\r\n\ @return\ maximo\ de\ lado\r\n
 numComments=8

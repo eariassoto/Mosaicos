@@ -134,25 +134,25 @@ public class VentanaPrincipal extends JFrame {
 		lbl[8].setBounds(105, 285, 50, 14);
 		contentPane.add(lbl[8]);
 
-		mosaicoPatron = new Mosaico(7, 1);
+		mosaicoPatron = new Mosaico(7, 1, new Color(255, 102, 102), new Color(153, 0, 0));
 		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
 		lblPatron[0] = canvasPatron.view;
 		lblPatron[0].setBounds(30, 220, 65, 50);
 		contentPane.add(lblPatron[0]);
 
-		mosaicoPatron = new Mosaico(7, 2);
+		mosaicoPatron = new Mosaico(7, 2, new Color(0, 204, 51), new Color(0, 153, 0));
 		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
 		lblPatron[1] = canvasPatron.view;
 		lblPatron[1].setBounds(120, 220, 65, 50);
 		contentPane.add(lblPatron[1]);
 
-		mosaicoPatron = new Mosaico(7, 3);
+		mosaicoPatron = new Mosaico(7, 3, new Color(255, 153, 102), new Color(255, 102, 0));
 		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
 		lblPatron[2] = canvasPatron.view;
 		lblPatron[2].setBounds(30, 285, 65, 50);
 		contentPane.add(lblPatron[2]);
 
-		mosaicoPatron = new Mosaico(7, 4);
+		mosaicoPatron = new Mosaico(7, 4, new Color(204, 0, 255), new Color(102, 0, 153));
 		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
 		lblPatron[3] = canvasPatron.view;
 		lblPatron[3].setBounds(120, 285, 65, 50);

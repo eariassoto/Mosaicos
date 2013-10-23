@@ -104,10 +104,10 @@ public class Controlador {
 	 * usuario desee una sesion nueva.
 	 */
 	private void setDefaults() {
-		mosaico.setLado(4);
-		mosaico.setPatron(1);
+		mosaico.setLado(7);
+		mosaico.setPatron(4);
 		mosaico.generarMosaico();
-		piso.setTamano(24, 32);
+		piso.setTamano(21, 28);
 		piso.generarPiso();
 	}
 

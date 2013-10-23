@@ -120,7 +120,6 @@ public class Terminal {
 				return "Comando no reconocido.";
 		case 1:
 			// girar 90 der
-			System.out.println(p1+" "+p2);
 			mosaico.girarMosaico(0);
 			piso.generarPiso();
 			return "Mosaico girado 90 grados a la derecha.";
@@ -131,7 +130,6 @@ public class Terminal {
 			return "Mosaico girado 90 grados a la izquierda.";
 		case 3:
 			// girar 180 der
-			System.out.println(p1+" "+p2);
 			mosaico.girarMosaico(2);
 			piso.generarPiso();
 			return "Mosaico girado 180 grados a la derecha.";
