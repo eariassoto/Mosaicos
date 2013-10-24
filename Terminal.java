@@ -141,11 +141,14 @@ public class Terminal {
 		case 5:
 			// cambiar colores
 			if (p1 > 0 && p1 <= mosaico.getCantidadColores()) {
-				mosaico.setColor(p1, JColorChooser.showDialog(null, "Seleccione un color",
-						null));
-				mosaico.generarMosaico();
-				piso.generarPiso();
-				return "Color #" + p1 + " cambiado correctamente.";
+				Color color = JColorChooser.showDialog(null, "Seleccione un color", null);
+				if(color != null){
+					mosaico.setColor(p1, color);
+					mosaico.generarMosaico();
+					piso.generarPiso();
+					return "Color #" + p1 + " cambiado correctamente.";
+				}else
+					return "Color no seleccionado.";	
 			} else
 				return "Codigo de color no reconocido.";
 		case 6:

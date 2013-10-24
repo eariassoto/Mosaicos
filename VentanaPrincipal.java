@@ -5,9 +5,12 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -69,7 +72,7 @@ public class VentanaPrincipal extends JFrame {
 		this.lblPatron = new JLabel[4];
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(575, 410);
+		this.setSize(575, 450);
 		crearVentana();
 	}
 
@@ -83,84 +86,96 @@ public class VentanaPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		txtEntrada.setBounds(230, 140, 221, 20);
+		txtEntrada.setBounds(230, 150, 221, 20);
 		contentPane.add(txtEntrada);
 		txtEntrada.setColumns(10);
 
 		txtEstado.setEditable(false);
-		txtEstado.setBounds(230, 30, 300, 80);
+		txtEstado.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14)); 
+		txtEstado.setBounds(230, 30, 300, 100);
 		contentPane.add(txtEstado);
 
 		txtComandos.setEditable(false);
-		txtComandos.setBounds(230, 205, 350, 200);
+		txtComandos.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14)); 
+		txtComandos.setBounds(230, 225, 350, 300);
 		contentPane.add(txtComandos);
 
-		lblMsj.setBounds(230, 165, 400, 20);
+		lblMsj.setBounds(230, 175, 400, 20);
+		lblMsj.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14)); 
 		contentPane.add(lblMsj);
 
 		lbl[0] = new JLabel("Mosaico seleccionado:");
+		lbl[0].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14)); 
 		lbl[0].setBounds(10, 10, 200, 14);
 		contentPane.add(lbl[0]);
 
 		lbl[1] = new JLabel("Configuraciones actuales:");
+		lbl[1].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14)); 
 		lbl[1].setBounds(230, 10, 250, 14);
 		contentPane.add(lbl[1]);
 
 		lbl[2] = new JLabel("Terminal:");
-		lbl[2].setBounds(230, 120, 100, 14);
+		lbl[2].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14)); 
+		lbl[2].setBounds(230, 130, 100, 14);
 		contentPane.add(lbl[2]);
 
 		lbl[3] = new JLabel("Comandos:");
-		lbl[3].setBounds(230, 190, 100, 14);
+		lbl[3].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14)); 
+		lbl[3].setBounds(230, 205, 100, 15);
 		contentPane.add(lbl[3]);
 
 		lbl[4] = new JLabel("Patrones disponibles:");
-		lbl[4].setBounds(10, 200, 200, 14);
+		lbl[4].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14)); 
+		lbl[4].setBounds(10, 240, 200, 14);
 		contentPane.add(lbl[4]);
 
 		lbl[5] = new JLabel("#1");
-		lbl[5].setBounds(15, 220, 50, 14);
+		lbl[5].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14)); 
+		lbl[5].setBounds(15, 260, 50, 14);
 		contentPane.add(lbl[5]);
 
 		lbl[6] = new JLabel("#2");
-		lbl[6].setBounds(105, 220, 50, 14);
+		lbl[6].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14)); 
+		lbl[6].setBounds(110, 260, 50, 14);
 		contentPane.add(lbl[6]);
 
 		lbl[7] = new JLabel("#3");
-		lbl[7].setBounds(15, 285, 50, 14);
+		lbl[7].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14)); 
+		lbl[7].setBounds(15, 340, 50, 14);
 		contentPane.add(lbl[7]);
 
 		lbl[8] = new JLabel("#4");
-		lbl[8].setBounds(105, 285, 50, 14);
+		lbl[8].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14)); 
+		lbl[8].setBounds(110, 340, 50, 14);
 		contentPane.add(lbl[8]);
 
 		mosaicoPatron = new Mosaico(7, 1, new Color(255, 102, 102), new Color(153, 0, 0));
-		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
+		canvasPatron = new CanvasPreview(mosaicoPatron, 70);
 		lblPatron[0] = canvasPatron.view;
-		lblPatron[0].setBounds(30, 220, 65, 50);
+		lblPatron[0].setBounds(35, 260, 70, 70);
 		contentPane.add(lblPatron[0]);
 
 		mosaicoPatron = new Mosaico(7, 2, new Color(0, 204, 51), new Color(0, 153, 0));
-		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
+		canvasPatron = new CanvasPreview(mosaicoPatron, 70);
 		lblPatron[1] = canvasPatron.view;
-		lblPatron[1].setBounds(120, 220, 65, 50);
+		lblPatron[1].setBounds(130, 260, 70, 70);
 		contentPane.add(lblPatron[1]);
 
 		mosaicoPatron = new Mosaico(7, 3, new Color(255, 153, 102), new Color(255, 102, 0));
-		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
+		canvasPatron = new CanvasPreview(mosaicoPatron, 70);
 		lblPatron[2] = canvasPatron.view;
-		lblPatron[2].setBounds(30, 285, 65, 50);
+		lblPatron[2].setBounds(35, 340, 70, 70);
 		contentPane.add(lblPatron[2]);
 
 		mosaicoPatron = new Mosaico(7, 4, new Color(204, 0, 255), new Color(102, 0, 153));
-		canvasPatron = new CanvasPreview(mosaicoPatron, 50);
+		canvasPatron = new CanvasPreview(mosaicoPatron, 70);
 		lblPatron[3] = canvasPatron.view;
-		lblPatron[3].setBounds(120, 285, 65, 50);
+		lblPatron[3].setBounds(130, 340, 70, 70);
 		contentPane.add(lblPatron[3]);
 
-		canvasPreview = new CanvasPreview(mosaico, 160);
+		canvasPreview = new CanvasPreview(mosaico, 200);
 		lblPreview = canvasPreview.view;
-		lblPreview.setBounds(10, 35, 189, 160);
+		lblPreview.setBounds(10, 35, 200, 200);
 		contentPane.add(lblPreview);
 
 		this.setResizable(false);
